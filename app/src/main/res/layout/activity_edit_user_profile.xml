@@ -6,7 +6,7 @@
     android:id="@+id/edit_user_drawer"
     tools:openDrawer="start"
     android:layout_height="match_parent"
-    tools:context=".EditUserProfile">
+    tools:context=".activity.EditUserProfile">
 
 
     <ScrollView

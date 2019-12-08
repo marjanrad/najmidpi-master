@@ -1,6 +1,5 @@
-package com.example.najmidpi;
+package com.example.najmidpi.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +9,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import com.example.najmidpi.adapter.AdapterRecyclerHistory;
+import com.example.najmidpi.model.HistoryTableList;
+import com.example.najmidpi.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +35,7 @@ public class FragmentTable extends Fragment {
     }
 
     private void showData() {
-        adapter=new AdapterRecyclerHistory(historyList);
+        adapter = new AdapterRecyclerHistory(historyList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);

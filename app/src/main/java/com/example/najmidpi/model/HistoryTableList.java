@@ -1,4 +1,4 @@
-package com.example.najmidpi;
+package com.example.najmidpi.model;
 
 import android.support.annotation.NonNull;
 

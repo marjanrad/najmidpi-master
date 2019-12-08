@@ -1,28 +1,38 @@
-package com.example.najmidpi;
+package com.example.najmidpi.activity;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.najmidpi.R;
+import com.example.najmidpi.database.DbHelper;
+import com.example.najmidpi.model.SensorObject;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
     TextView menu_user, menu_doctor, menu_history, menu_aboutus, menu_contactus, menu_home;
     private DrawerLayout mDrawerLayout;
+    private Button btn_save_data;
 
     ImageView btnBalance, btnBarometer, btnPedimeter, btnHeartbeat, btnStethoscop;
     TextView tvBalance, tvBarometer, tvPedimeter, tvHeartbeat, tvStethoscop;
+    private DbHelper dbHelper;
+    private List<SensorObject> list;
+    private SensorObject sensorObject;
 
 
     @Override
@@ -30,7 +40,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
+        dbHelper = new DbHelper(this);
         if (getSupportActionBar() == null) return;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.iconmenu);
@@ -77,7 +87,37 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+        btn_save_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sensorObject = new SensorObject();
+                list = new ArrayList<>();
+                sensorObject.setFesharSanj(Integer.parseInt(tvBarometer.getText().toString()));
+                sensorObject.setGamShomar(Integer.parseInt(tvPedimeter.getText().toString()));
+                sensorObject.setVazn(Integer.parseInt(tvBalance.getText().toString()));
+                sensorObject.setZarabaneGhalb(Integer.parseInt(tvHeartbeat.getText().toString()));
+                sensorObject.setTime(getCurrentTime());
+                list.add(sensorObject);
+                dbHelper.add_sensor(list);
+                for (int i = 0; i < dbHelper.getAllSensor().size(); i++) {
+                    int feshar = dbHelper.getAllSensor().get(i).getFesharSanj();
+                    int gam = dbHelper.getAllSensor().get(i).getGamShomar();
+                    String time = dbHelper.getAllSensor().get(i).getTime();
+                    Log.e("db", String.valueOf(feshar + gam
+                            + time));
+                }
 
+            }
+        });
+    }
+
+    private String getCurrentTime() {
+        Calendar calendar = Calendar.getInstance();
+        String year = String.valueOf(calendar.get(Calendar.YEAR));
+        String month = String.valueOf(calendar.get(Calendar.MONTH)+1);
+        String date = String.valueOf(calendar.get(Calendar.DATE));
+        String time = year + "-" + month + "-" + date;
+        return time;
     }
 
 
@@ -96,6 +136,7 @@ public class HomeActivity extends AppCompatActivity {
         btnPedimeter = findViewById(R.id.home_btn_pedimeter);
         btnHeartbeat = findViewById(R.id.home_btn_heartbeat);
         btnStethoscop = findViewById(R.id.home_btn_stethoscop);
+        btn_save_data = findViewById(R.id.btn_save_data);
 
         //textView
         tvBalance = findViewById(R.id.home_tv_balance);

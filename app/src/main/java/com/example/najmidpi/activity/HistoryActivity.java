@@ -1,4 +1,4 @@
-package com.example.najmidpi;
+package com.example.najmidpi.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -19,6 +19,10 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.najmidpi.R;
+import com.example.najmidpi.fragment.FragmentBarChart;
+import com.example.najmidpi.fragment.FragmentTable;
 
 import ir.hamsaa.persiandatepicker.Listener;
 import ir.hamsaa.persiandatepicker.PersianDatePickerDialog;

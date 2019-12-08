@@ -11,20 +11,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity_Register"></activity>
-        <activity android:name=".HistoryActivity" />
-        <activity android:name=".AboutUs" />
-        <activity android:name=".DoctorProfile" />
-        <activity android:name=".EditUserProfile" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.Activity_Register"></activity>
+        <activity android:name=".activity.HistoryActivity" />
+        <activity android:name=".activity.AboutUs" />
+        <activity android:name=".activity.DoctorProfile" />
+        <activity android:name=".activity.EditUserProfile" />
+        <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowUserProfile" />
+        <activity android:name=".activity.ShowUserProfile" />
     </application>
 
 </manifest>

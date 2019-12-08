@@ -8,7 +8,7 @@
     android:background="@drawable/backgrounddpi"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".Activity_Register">
+    tools:context=".activity.Activity_Register">
 
     <LinearLayout
         android:layout_width="match_parent"

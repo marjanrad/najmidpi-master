@@ -1,4 +1,4 @@
-package com.example.najmidpi;
+package com.example.najmidpi.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.najmidpi.R;
+import com.example.najmidpi.model.HistoryTableList;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +17,7 @@ public class AdapterRecyclerHistory extends RecyclerView.Adapter<AdapterRecycler
 
     List<HistoryTableList> ListHistory;
 
-    AdapterRecyclerHistory(List<HistoryTableList> ListHistory) {
+   public AdapterRecyclerHistory(List<HistoryTableList> ListHistory) {
         if (ListHistory == null) {
             this.ListHistory = new ArrayList<>();
         } else {

@@ -1,32 +1,29 @@
-package com.example.najmidpi;
+package com.example.najmidpi.activity;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class EditUserProfile extends AppCompatActivity {
+import com.example.najmidpi.R;
 
-    TextView menu_user,menu_doctor,menu_history,menu_aboutus,menu_contactus, menu_home;
+
+public class ShowUserProfile extends AppCompatActivity {
+    TextView menu_user, menu_doctor, menu_history, menu_aboutus, menu_contactus, menu_home;
     private DrawerLayout mDrawerLayout;
-    RadioGroup radioGroup;
-    RadioButton radioButton;
+    Button btn_edit;
 
-Button btnsave ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_user_profile);
+        setContentView(R.layout.activity_show_user_profile);
 
         if (getSupportActionBar() == null) return;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -36,30 +33,25 @@ Button btnsave ;
         init();
         menu();
 
-        btnsave.setOnClickListener(new View.OnClickListener() {
+        btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkButton();
-//                Intent intent=new Intent(getApplicationContext(),ShowUserProfile.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), EditUserProfile.class);
+                startActivity(intent);
             }
         });
-
     }
 
     private void init() {
-        btnsave=findViewById(R.id.edit_user_profile_btnsave);
+        btn_edit = findViewById(R.id.show_user_profile_btnedit);
         menu_user=findViewById(R.id.menu_user);
         menu_doctor=findViewById(R.id.menu_doctor);
         menu_history=findViewById(R.id.menu_history);
         menu_aboutus=findViewById(R.id.menu_aboutus);
         menu_contactus=findViewById(R.id.menu_contactus);
-        mDrawerLayout=findViewById(R.id.edit_user_drawer);
+        mDrawerLayout=findViewById(R.id.show_user_drawer);
         menu_home=findViewById(R.id.menu_home);
-        radioGroup=findViewById(R.id.edit_user_profile_radioGroup);
-
     }
-    //drawer menu
     private void menu() {
 
         menu_user.setOnClickListener(new View.OnClickListener() {
@@ -98,24 +90,19 @@ Button btnsave ;
         menu_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),HistoryActivity.class);
+                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
                 startActivity(intent);
             }
         });
         menu_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    public void checkButton(){
-        int radioId=radioGroup.getCheckedRadioButtonId();
-        radioButton=findViewById(radioId);
-        Toast.makeText(this, "text"+radioButton.getText(), Toast.LENGTH_SHORT).show();
-    }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -141,6 +128,5 @@ Button btnsave ;
     }
 
 
+
 }
-
-
